@@ -34,6 +34,7 @@ module.exports = {
 
     adminLogin: async (req, res) => {
         try {
+            console.log(req.body);
             const { error } = validatelogin(req.body);
             if (error) {
                 return res.status(400).send({ message: error.details[0].message });
