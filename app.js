@@ -64,7 +64,7 @@ const server = app.listen("https://redwings-backend.onrender.com", () =>
 
 const io = socket(server, {
   cors: {
-    origin: "https://redwings.onrender.com",
+    origin: ["https://redwings.onrender.com", "https://redwings-i5rl.onrender.com"],
     credentials: true,
   },
 });
