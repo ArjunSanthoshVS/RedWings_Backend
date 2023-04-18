@@ -35,15 +35,15 @@ module.exports = {
     adminLogin: async (req, res) => {
         try {
             console.log(req.body);
-            const { error } = validatelogin(req.body);
+            const { error } = validatelogin(req.body.data);
             if (error) {
                 return res.status(400).send({ message: error.details[0].message });
             }
-            const admin = await Admin.findOne({ email: req.body.email })
+            const admin = await Admin.findOne({ email: req.body.data.email })
             if (!admin) {
                 return res.status(400).send({ message: "Admin credentials are wrong" })
             }
-            const checkPass = await bcrypt.compare(req.body.password, admin.password)
+            const checkPass = await bcrypt.compare(req.body.data.password, admin.password)
             if (!checkPass) {
                 return res.status(400).send({ message: "Admin credentials are wrong" })
             }
