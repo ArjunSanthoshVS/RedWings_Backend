@@ -15,19 +15,19 @@ module.exports = {
     userSignup: async (req, res, next) => {
         try {
 
-            const { error } = validateSignup(req.body.data);
+            const { error } = validateSignup(req.body);
             if (error) {
                 return res.status(400).send({ message: error.details[0].message })
             }
 
-            const isExisting = await User.findOne({ email: req.body.data.email })
+            const isExisting = await User.findOne({ email: req.body.email })
             if (isExisting) {
                 return res.status(409).send({ message: "User with given email already Exist!" });
             }
-            const hashedPassword = await bcrypt.hash(req.body.data.password, 10)
+            const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
 
-            const newUser = await User.create({ ...req.body.data, password: hashedPassword })
+            const newUser = await User.create({ ...req.body, password: hashedPassword })
 
 
             const token = jwt.sign({ email: newUser.email, id: newUser._id, isAdmin: newUser.isAdmin }, process.env.JWT_SECRET, { expiresIn: "10h" })
