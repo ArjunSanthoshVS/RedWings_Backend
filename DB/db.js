@@ -8,7 +8,7 @@ module.exports = () => {
     }
 
     try {
-        mongoose.connect("mongodb+srv://Arjun_Santhosh:VJQmP0w2j0rezS19@redwings.ngtzzdg.mongodb.net/RedWings", connectionParams)
+        mongoose.connect(process.env.MONGO_URI, connectionParams)
         console.log('Connected to database successfully.....');
     } catch (error) {
         console.log(error);
