@@ -26,9 +26,7 @@ module.exports = {
             }
             const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
-
             const newUser = await User.create({ ...req.body, password: hashedPassword })
-
 
             const token = jwt.sign({ email: newUser.email, id: newUser._id, isAdmin: newUser.isAdmin }, process.env.JWT_SECRET, { expiresIn: "10h" })
             return res.status(201).json({ newUser, token })
