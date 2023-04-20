@@ -30,9 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors({
-  origin: "https://redwings-i5rl.onrender.com",
-}))
+app.use(cors())
 
 app.use('/user', userRoutes);
 app.use('/admin', adminRoutes)
