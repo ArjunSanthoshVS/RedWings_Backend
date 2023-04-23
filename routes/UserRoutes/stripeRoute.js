@@ -42,8 +42,8 @@ router.post('/donate_money', async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: 'http://localhost:3000/success',
-        cancel_url: 'http://localhost:3000/other_donation',
+        success_url: 'https://redwings-i5rl.onrender.com/success',
+        cancel_url: 'https://redwings-i5rl.onrender.com/other_donation',
     });
     res.send({ url: session.url });
 });
