@@ -42,8 +42,8 @@ router.post('/donate_money', async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: 'https://redwings-i5rl.onrender.com/success',
-        cancel_url: 'https://redwings-i5rl.onrender.com/other_donation',
+        success_url: `${process.env.REACT_URL}/success`,
+        cancel_url: `${process.env.REACT_URL}/other_donation`,
     });
     res.send({ url: session.url });
 });

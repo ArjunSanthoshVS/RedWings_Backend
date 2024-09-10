@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors({ origin:"https://redwings-i5rl.onrender.com"}))
+app.use(cors({ origin: process.env.REACT_URL }))
 
 app.use('/user', userRoutes);
 app.use('/admin', adminRoutes)
@@ -63,7 +63,7 @@ const server = app.listen(5000, () =>
 
 const io = socket(server, {
   cors: {
-    origin: "https://redwings-i5rl.onrender.com",
+    origin: process.env.REACT_URL,
     credentials: true,
   },
 });
